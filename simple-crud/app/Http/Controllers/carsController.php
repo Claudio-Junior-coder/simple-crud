@@ -14,8 +14,10 @@ class carsController extends Controller
     }
 
     public function create (Request $request) {
+        $data = $request->all();
+        unset($data['_token']);
 
-        $id = Cars::create(['name' => 'Descritivo não informado.'])->id;
+        Cars::create($data);
 
         return redirect()->route('cars.index');
 
