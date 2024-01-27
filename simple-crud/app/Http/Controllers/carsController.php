@@ -19,7 +19,7 @@ class carsController extends Controller
 
         Cars::create($data);
 
-        return redirect()->route('cars.index');
+        return response()->json(['success' => 'true']);
 
     }
 
@@ -33,7 +33,7 @@ class carsController extends Controller
 
         Cars::where('id', $id)->update($data);
 
-        return redirect()->route('cars.index', ['message' => 'Carro atualizado com sucesso!']);
+        return response()->json(['success' => 'true']);
 
     }
 
@@ -43,7 +43,7 @@ class carsController extends Controller
 
         Cars::where('id', $id)->delete();
 
-        return redirect()->route('cars.index', ['message' => 'Carro excluído com sucesso!']);
+        return response()->json(['success' => 'true']);
 
     }
 
@@ -52,7 +52,7 @@ class carsController extends Controller
         $element = isset($id) ? $id : false;
 
         if($element == false) {
-            return redirect()->back()->with('message', 'Id informado não existe.');
+            return response()->json(['success' => 'false']);
         }
 
         return $element;
